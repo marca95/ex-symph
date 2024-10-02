@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>To do list</title>
+    <link rel="stylesheet" href="{{ asset('node_modules/bootstrap/dist/css/bootstrap.css') }}">
+  </head>
+
+  <body>
+  {% for message in app.session.flashBag.get('info') %}
+    <div class="alert alert-info">
+    {{ message }}
+    </div>
+  {% endfor %}
+
+    {% for message in app.session.flashBag.get('succès') %}
+    <div class="alert alert-success">
+    {{ message }}
+    </div>
+  {% endfor %}
+
+    {% for message in app.session.flashBag.get('erreur') %}
+    <div class="alert alert-danger">
+    {{ message }}
+    </div>
+  {% endfor %}
+
+  <h1>Liste des todos</h1>
+  <ol class='list-group'>
+  {% for name, content in app.session.get('todos') %}
+  <li class='list-group-item'>
+    {{ name }} : {{ content }}
+  </li>
+  {% endfor %}
+  </ol>
+
+  </body>
+</html>
